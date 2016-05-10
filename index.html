@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Respons-O-Matic</title>
+
+    <link rel="stylesheet" href="./r-o-m-assets/css/devices.min.css" type="text/css">
+	<link rel="stylesheet" href="./r-o-m-assets/css/styles.css" type="text/css">
+
+	<script type="text/javascript">
+	/*
+		The script at the bottom just sets the iframes' src attributes to the value 
+		you set here, so you don't have to do it all yourself. 
+
+		IMPORTANT: If you switch Marvel device templates, be sure to a blank 
+		<iframe></iframe> in where it indicates content should go.
+	*/
+
+	/*
+		Change this value to point at your local webserver, index page, or add your 
+		own files to the content directory.
+	*/
+		var loc = window.loc = "./sample.html";
+	</script>
+
+</head>
+<body>
+
+<div class="flex-wrapper">
+
+	<div class="device-wrapper">
+
+		<div class="device-item">
+			<div class="marvel-device iphone5s silver">
+			    <div class="top-bar"></div>
+			    <div class="sleep"></div>
+			    <div class="volume"></div>
+			    <div class="camera"></div>
+			    <div class="sensor"></div>
+			    <div class="speaker"></div>
+			    <div class="screen">
+			        <iframe></iframe>
+			    </div>
+			    <div class="home"></div>
+			    <div class="bottom-bar"></div>
+			</div>
+		</div>
+
+		<div class="device-item">
+			<div class="marvel-device ipad silver">
+			    <div class="camera"></div>
+			    <div class="screen">
+			        <iframe></iframe>
+			    </div>
+			    <div class="home"></div>
+			</div>
+		</div>
+
+		<div class="device-item">
+			<div class="marvel-device macbook">
+			    <div class="top-bar"></div>
+			    <div class="camera"></div>
+			    <div class="screen">
+			        <iframe></iframe>
+			    </div>
+			    <div class="bottom-bar"></div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+/*
+	See above
+*/
+
+function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState != 'loading')
+        fn();
+    });
+  }
+}
+
+ready(function() {
+	var elements = document.querySelectorAll('iframe');
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].src = window.loc;
+	}
+});
+</script>
+
+
+</body>
+</html>
