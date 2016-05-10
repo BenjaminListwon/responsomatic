@@ -4,6 +4,7 @@
 
 Respons-O-Matic is a super-low-overhead way to preview your responsive designs, as you build them. All it really is is a single HTML page that loads a specified local resource inside some iframes. You don't even need to be running a webserver to use it!
 
+**[Super-hot demo link](https://benjaminlistwon.com/demo/responsomatic/)**
 
 ## How does it work?
 
