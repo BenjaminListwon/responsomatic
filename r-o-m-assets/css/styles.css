@@ -36,11 +36,13 @@ div.device-wrapper {
 	flex-direction: row;
 	align-items: center;
 	flex-grow: 1;
+	height: 100%;
 }
 
 div.device-item {
 	flex-grow: 1;
 	padding: 3rem;
+	
 }
 
 /* Make the iframes snug in their device wrappers */
