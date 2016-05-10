@@ -95,7 +95,7 @@ function ready(fn) {
 ready(function() {
 	var elements = document.querySelectorAll('iframe');
 	for (var i = 0; i < elements.length; i++) {
-		elements[i].src = window.loc;
+		elements[i].src = window.loc + "?v=" + new Date().getTime();
 	}
 });
 </script>
