@@ -6,6 +6,13 @@ Respons-O-Matic is a super-low-overhead way to preview your responsive designs, 
 
 **[Super-hot demo link](https://benjaminlistwon.com/demo/responsomatic/)**
 
+I added some new features:
+
+* Simply type in a URL or filename to load; no more config
+* Last ten history items
+* Rotate the iDevices by clicking on the home button
+
+
 ## How does it work?
 
 Respons-O-Matic uses [devices.css](http://marvelapp.github.io/devices.css/) from the clever folks at [Marvel](https://marvelapp.com) to display your HTML within the context of a few different devices. Each device layout simply surrounds an iframe which loads the content you specify. 
@@ -16,7 +23,7 @@ There's obviously no magic going on here, I just thought I'd share something tha
 
 ## Installation
 
-There's no real install per se, but here's a few steps just in case. 
+I've reworked the file structure, and tweaked the python script, so now things will hopefully work for a broader audience.
 
 #### Get The Files
 
@@ -24,52 +31,85 @@ First, just download or clone this repository to your hard drive someplace.
 
 #### Before Continuing
 
-After you've got the repository, I recommend checking out the included sample real quick. Just head to your browser, choose "File > Open" and point it at `/path/to/index.html`.
+After you've got the repository, I recommend checking out the included sample real quick.
 
-#### Configuring Your Setup
-Once you see how the files just load in the iframes, you get a pretty good idea what's going on here. So, to set it up for your content:
+* Head to your browser
+* Choose "File > Open"
+* Point it at `/path/to/responsomatic/index.html`. 
 
-1. If you have a webserver that is already serving your mockups, just edit the `loc` variable in `index.html` to point to that location, then skip ahead to "Serving It Up"
-2. If you have just static content, you can:
-	1. Drop your content right in this directory (be careful not to overwrite `index.html`) -or-
-	2. Continue to edit in your existing location
-	3. Either way, just provide the on-disk path to your html as the location variable in `index.html`
+The root `index.html` file should redirect to the application, if not, try opening `/path/to/responsomatic/responsomatic/index.html` instead. 
 
-(Note: If you are using relative URLs for assets, etc in your own directory, this last method may not work. I'm working on making a better server for you ASAP.)
+## Configuring Your Setup
+
+Once you see how the files just load in the iframes, you get a pretty good idea what's going on here. There's a couple of ways to make Respons-O-Matic work with your content.
+
+To avoid confusion in this section and the next, `YOUR_PROJECT_DIRECTORY` will refer to where you put the `serveit.py` file and the `responsomatic` subdirectory (the one with all the css and js in it). We'll call that subdirectory the "responsomatic code" directory.
+
+
+#### Scenario 1 
+If you have a webserver that is already serving your mockups simply skip ahead to "Serving It Up"
+
+#### Scenario 2
+Drop your content into `/path/to/responsomatic` and edit it there. When you enter a filename into the app, use `../your_entry_file.html` as the path.
+
+In this scenario, `YOUR_PROJECT_DIRECTORY` will be `/path/to/responsomatic`.
+
+#### Scenario 3
+Continue to edit in your existing location and copy the `/path/to/responsomatic/responsomatic` subdirectory (the one with all the css and js in it) to your project's root directory. 
+
+If you'd like to use the server script, you should also copy `serveit.py` to the same location. You don't need to do this, and can use Option 1 or Option 3 below. If you do, make sure this file and the code directory _both_ live at the root of your project. 
+
+In this scenario, `YOUR_PROJECT_DIRECTORY` will be `/path/to/your/project`.
 
 
 ## Serving It Up
 
-#### Option 1
-By default, once configured above, you don't need to serve anything. You can simply choose "File > Open" from your browser and point it at `/path/to/index.html` on your hard drive.
+#### Option 1: No Server Required
+By default, once configured above, you don't need to serve anything. As before,
 
-#### Option 2
-If you have python installed, open up Terminal.app, then:
+* Head to your browser
+* Choose "File > Open"
+* Point it at `YOUR_PROJECT_DIRECTORY/responsomatic/index.html`
+
+_(The app index lives one level in from the root or your project.)_
+
+
+#### Option 2: One-Line Server
+Again, if you have python (2.7.x) installed, and you don't want to mess with the script, or copy it to your project
 
 ```
-cd /path/to/responsomatic
-python ./serveit.py
-```
-
-If you see an error that the script can't run, most likely you just need to `chmod 755 ./serveit.py`
-
-If you see an error about the port (8080) already being in use then you can change it in the script, or &hellip;
-
-#### Option 3
-```
-cd /path/to/responsomatic
+cd YOUR_PROJECT_DIRECTORY
 python -m SimpleHTTPServer PORT_NUMBER
 ```
 
-Where `PORT_NUMBER` is a port of your choosing.
+In your browser, you can now navigate to `http://localhost:PORT_NUMBER/responsomatic/index.html`
+
+
+#### Option 3: Use The Server Script
+If you have python (2.7.x) installed, open up Terminal.app, then:
+
+```
+cd YOUR_PROJECT_DIRECTORY
+python ./serveit.py
+```
+
+In your browser, you can now navigate to `http://localhost:8080/responsomatic/index.html`
+
+**Debugging the server script**
+
+* If you see an error that the script can't run, most likely you just need to `chmod 755 ./serveit.py`
+* If you see an error about 8080 (the default) already being in use then you can change the port by using the `-p` option like this `python serveit.py -p PORT_NUMBER`
+* If you copied the script and responsomatic to your own content directory, make sure they _both_ live at the root of your project. 
+
+
 
 ## More To Come
 
 I'm working on the following right now:
 
 * ability to switch devices
-* ability to switch between landscape and portrait
-* a better serve script that will serve content form you project directory as a configuration parameter
+* DONE: <strike>ability to switch between landscape and portrait</strike>
+* DONE: <strike>a better serve script that will serve content form you project directory as a configuration parameter</strike>
 
 What else? Feel free to add an [enhancement request](https://github.com/BenjaminListwon/responsomatic/issues) with your thoughts, or fork it and send a Pull Request my way.
 
